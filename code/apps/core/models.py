@@ -14,10 +14,10 @@ class SeoModel (models.Model):
         abstract = True
 
 
-class Page(SeoModel):
+class Page(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
-    description = models.TextField(max_length=1200, verbose_name="Описание", blank=True, null=True)
-    image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке", blank=True, null=True)
+    # description = models.TextField(max_length=1200, verbose_name="Описание", blank=True, null=True)
+    # image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке", blank=True, null=True)
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
     published = models.BooleanField(default=True)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
@@ -31,12 +31,14 @@ class Page(SeoModel):
         return self.title
 
 
-class PageBlock(SeoModel):
+class PageBlock(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     # description = models.TextField(max_length=1200, verbose_name="Описание", blank=True, null=True)
     # image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке")
     content_html = RichTextUploadingField(blank=True, null=True, default=None, verbose_name="Контент HTML")
-    published = models.BooleanField(default=True)
+    # published = models.BooleanField(default=True)
+    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
+    button = models.SlugField(editable=True, null=True, blank=True, default=None,)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
     page = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='tabs', verbose_name="Страница", on_delete=models.SET_NULL)
 

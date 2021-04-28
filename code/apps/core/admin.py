@@ -24,6 +24,7 @@ class PageAdmin(SortableAdminMixin, AdminImageMixin, nested_admin.NestedModelAdm
     # list_display = ['title', 'image_tag', 'parent', 'published', ]
     # list_display_links = ['title', 'image_tag', ]
     # list_filter = ('published', 'parent',)
+    inlines = [PageBlockInline]
 
     # def image_tag(self, obj):
     #     thumb = get_thumbnail(obj.image, '256x256')
