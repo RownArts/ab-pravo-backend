@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "*"
+django-filter = "*"
+django-cors-headers = "*"
+django-imagekit = "*"
+sorl-thumbnail = "*"
+sorl-thumbnail-serializer-field = "*"
+django-admin-sortable2 = "*"
+django-nested-admin = "*"
+django-extensions = "*"
+django-cleanup = "*"
+django-ckeditor = "*"
+django-import-export = "*"
+requests = "*"
+python-slugify = "*"
+humanize = "*"
+Django = "*"
+Pillow = "*"
+markdown = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"

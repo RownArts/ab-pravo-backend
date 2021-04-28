@@ -1,0 +1,74 @@
+# -----------------
+# ---- SERVER -----
+# -----------------
+# uwsgi
+# gunicorn
+# gevent
+# meinheld
+# psycopg2
+# psycopg2-binary
+# graphene-django>=2.0
+# whitenoise
+# mysqlclient
+
+# -----------------
+# ---- DJANGO -----
+# -----------------
+django
+djangorestframework
+markdown
+django-filter
+# django-redis
+django-cors-headers
+# django-allauth
+# django-rest-auth[with_social]
+# djangorestframework-jwt
+# django-auto-prefetching
+
+
+# -----------------
+# ----- IMAGE -----
+# -----------------
+Pillow
+django-imagekit
+sorl-thumbnail
+sorl-thumbnail-serializer-field
+
+# -----------------
+# -- THIRD PARTY --
+# -----------------
+django-admin-sortable2
+django-nested-admin
+django-extensions
+django-cleanup
+django-ckeditor
+# django-storages
+# boto3
+# django-reset-migrations
+# drf-keyed-list
+django-import-export
+# pylint
+# twilio
+# django-phonenumber-field
+# django-phonenumber-field[phonenumbers]
+# django-phonenumber-field[phonenumberslite]
+# phonenumbers
+# django-markdown
+# django-markdownx
+# drfpasswordless
+# django-twilio
+requests
+# beautifulsoup4
+# printy
+python-slugify
+# drf-recaptcha
+# djangorestframework-xml
+# lxml
+humanize
+
+# -----------------
+# ------ TMP ------
+# -----------------
+# pycookiecheat
+# South
+# django-bootstrap-form
