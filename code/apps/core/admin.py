@@ -16,6 +16,13 @@ class PageBlockInline(nested_admin.NestedStackedInline):
     extra = 0
 
 
+class ButtonInline(nested_admin.NestedTabularInline):
+    model = Button
+    # exclude = ('my_order', 'published', )
+    # inlines = [PromoButtonInline]
+    extra = 0
+
+
 @admin.register(Page)
 # class PageAdmin(AdminImageMixin, admin.ModelAdmin):
 class PageAdmin(SortableAdminMixin, AdminImageMixin, nested_admin.NestedModelAdmin):
@@ -34,16 +41,26 @@ class PageAdmin(SortableAdminMixin, AdminImageMixin, nested_admin.NestedModelAdm
 
 
 @admin.register(PageBlock)
-class PageBlockAdmin(SortableAdminMixin, AdminImageMixin, admin.ModelAdmin):
+class PageBlockAdmin(SortableAdminMixin, nested_admin.NestedModelAdmin):
+    list_display = ['title', 'page', ]
+    list_filter = ('page',)
+    inlines = [ButtonInline]
 
     ordering = ('my_order',)
     pass
 
 
 @admin.register(Price)
-class PriceAdmin(SortableAdminMixin, AdminImageMixin, admin.ModelAdmin):
+class PriceAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ['title', 'price', 'published', ]
     list_editable = ['price', 'published', ]
+
+    ordering = ('my_order',)
+    pass
+
+
+@admin.register(Button)
+class ButtonAdmin(SortableAdminMixin, nested_admin.NestedModelAdmin):
 
     ordering = ('my_order',)
     pass

@@ -24,6 +24,7 @@ class Page(models.Model):
     parent = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='child_pages', verbose_name="Родительская страница", on_delete=models.SET_NULL)
 
     class Meta:
+        ordering = ['my_order']
         verbose_name = "Страница"
         verbose_name_plural = "Страницы"
 
@@ -38,9 +39,27 @@ class PageBlock(models.Model):
     content_html = RichTextUploadingField(blank=True, null=True, default=None, verbose_name="Контент HTML")
     # published = models.BooleanField(default=True)
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
-    button = models.SlugField(editable=True, null=True, blank=True, default=None,)
+    # button = models.SlugField(editable=True, null=True, blank=True, default=None,)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
-    page = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='blocks', verbose_name="Страница", on_delete=models.SET_NULL)
+    page = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='blocks', on_delete=models.SET_NULL)
+
+    class Meta(object):
+        ordering = ['my_order']
+
+    def __str__(self):
+        return self.title
+
+
+class Button(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Заголовок")
+    href = models.CharField(max_length=100, editable=True, null=True, blank=True, default=None,)
+    # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+    # published = models.BooleanField(default=True)
+    block = models.ForeignKey('PageBlock', blank=True, null=True, default=None, related_name='buttons', on_delete=models.SET_NULL)\
+
+
+    # class Meta(object):
+    #     ordering = ['my_order']
 
     def __str__(self):
         return self.title
@@ -51,6 +70,9 @@ class Price(models.Model):
     price = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
     published = models.BooleanField(default=True)
+
+    class Meta(object):
+        ordering = ['my_order']
 
     def __str__(self):
         return self.title

@@ -6,7 +6,15 @@ from apps.core.models import *
 # from abpravo_project.utils import build_absolute_img_url, build_frontend_url
 
 
+class ButtonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Button
+        fields = '__all__'
+
+
 class PageBlocksSerializer(serializers.ModelSerializer):
+    buttons = ButtonSerializer(read_only=True, many=True)
 
     # def get_content_html(self, obj):
     #     return (build_absolute_img_url(self, obj.content_html))
