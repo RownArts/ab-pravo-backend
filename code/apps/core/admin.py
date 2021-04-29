@@ -64,3 +64,9 @@ class ButtonAdmin(SortableAdminMixin, nested_admin.NestedModelAdmin):
 
     ordering = ('my_order',)
     pass
+
+
+@admin.register(SiteConfig)
+class SiteConfigAdmin(admin.ModelAdmin):
+
+    pass

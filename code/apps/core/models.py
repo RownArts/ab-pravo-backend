@@ -85,6 +85,7 @@ class SiteConfig(models.Model):
     whatsapp = models.CharField(max_length=200, blank=True, null=True, default=None)
     email = models.CharField(max_length=200, blank=True, null=True, default=None)
     address = models.CharField(max_length=200, blank=True, null=True, default=None)
+    contacts_text = models.CharField(max_length=200, blank=True, null=True, default=None)
     vk = models.CharField(max_length=200, blank=True, null=True, default=None)
     ig = models.CharField(max_length=200, blank=True, null=True, default=None)
 
