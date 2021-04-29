@@ -76,3 +76,17 @@ class Price(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SiteConfig(models.Model):
+    key = models.SlugField(max_length=200)
+    phone1 = models.CharField(max_length=200, blank=True, null=True, default=None)
+    phone2 = models.CharField(max_length=200, blank=True, null=True, default=None)
+    whatsapp = models.CharField(max_length=200, blank=True, null=True, default=None)
+    email = models.CharField(max_length=200, blank=True, null=True, default=None)
+    address = models.CharField(max_length=200, blank=True, null=True, default=None)
+    vk = models.CharField(max_length=200, blank=True, null=True, default=None)
+    ig = models.CharField(max_length=200, blank=True, null=True, default=None)
+
+    def __str__(self):
+        return self.key

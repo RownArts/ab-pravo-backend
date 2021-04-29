@@ -46,3 +46,10 @@ class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Price
         fields = '__all__'
+
+
+class SiteConfigSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SiteConfig
+        fields = '__all__'

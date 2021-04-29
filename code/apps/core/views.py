@@ -47,3 +47,13 @@ class PriceViewSet(viewsets.ModelViewSet):
     @method_decorator(vary_on_cookie)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+class SiteConfigViewSet(viewsets.ModelViewSet):
+    serializer_class = SiteConfigSerializer
+    queryset = SiteConfig.objects.all()
+
+    @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
+    @method_decorator(vary_on_cookie)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
