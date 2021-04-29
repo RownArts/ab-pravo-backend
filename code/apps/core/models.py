@@ -40,7 +40,7 @@ class PageBlock(models.Model):
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
     button = models.SlugField(editable=True, null=True, blank=True, default=None,)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
-    page = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='tabs', verbose_name="Страница", on_delete=models.SET_NULL)
+    page = models.ForeignKey('Page', blank=True, null=True, default=None, related_name='blocks', verbose_name="Страница", on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.title

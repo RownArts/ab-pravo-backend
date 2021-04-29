@@ -148,3 +148,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+
+CACHETIME_CUSTOM = 30  # в секундах
