@@ -52,7 +52,7 @@ class PriceViewSet(viewsets.ModelViewSet):
 class SiteConfigViewSet(viewsets.ModelViewSet):
     serializer_class = SiteConfigSerializer
     queryset = SiteConfig.objects.all()
-    lookup_field = 'slug'
+    lookup_field = 'key'
 
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
     @method_decorator(vary_on_cookie)
