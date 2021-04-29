@@ -33,7 +33,7 @@ class PageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PriceShortSerializer(serializers.ModelSerializer):
+class PriceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Price

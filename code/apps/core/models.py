@@ -46,10 +46,11 @@ class PageBlock(models.Model):
         return self.title
 
 
-class Price(SeoModel):
+class Price(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
-    price = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+    price = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
     my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+    published = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

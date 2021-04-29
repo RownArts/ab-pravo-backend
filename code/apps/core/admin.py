@@ -42,6 +42,8 @@ class PageBlockAdmin(SortableAdminMixin, AdminImageMixin, admin.ModelAdmin):
 
 @admin.register(Price)
 class PriceAdmin(SortableAdminMixin, AdminImageMixin, admin.ModelAdmin):
+    list_display = ['title', 'price', 'published', ]
+    list_editable = ['price', 'published', ]
 
     ordering = ('my_order',)
     pass

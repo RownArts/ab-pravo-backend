@@ -37,12 +37,11 @@ class PageViewSet(viewsets.ModelViewSet):
 
 
 class PriceViewSet(viewsets.ModelViewSet):
-    serializer_class = PageSerializer
-    queryset = Page.objects.filter(published=True)
-    lookup_field = 'slug'
+    serializer_class = PriceSerializer
+    queryset = Price.objects.filter(published=True)
 
     def get_queryset(self):
-        return Page.objects.filter(published=True)
+        return Price.objects.filter(published=True)
 
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
     @method_decorator(vary_on_cookie)
