@@ -1,0 +1,94 @@
+version: "3"
+
+volumes:
+  abpravo-redisdata: {}
+  abpravo-django-static: {}
+  abpravo-django-media: {}
+
+services:
+  django:
+    restart: always
+    container_name: "abpravo_django"
+    # image: taime/django:latest
+    build:
+      context: ./
+      # dockerfile: ./docker/django/alpine-taime.Dockerfile
+      dockerfile: ./docker/django/default.Dockerfile
+    # command: gunicorn abpravo_project.wsgi -b 0.0.0.0:8000
+    # command: bash -c " python manage.py collectstatic --noinput && python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    # command: bash -c " python manage.py collectstatic --noinput && uwsgi --http :8000 --module abpravo_project.wsgi"
+    # command: bash -c " python manage.py collectstatic --noinput && gunicorn abpravo_project.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k egg:meinheld#gunicorn_worker -c /gunicorn_conf.py abpravo_project.wsgi -b 0.0.0.0:8000"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    volumes:
+      - ./code:/code
+      - abpravo-django-static:/code/static
+      - abpravo-django-media:/code/media
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    # links:
+    # - redis
+    env_file:
+      - ./docker/.envs/.django
+
+  nginx:
+    container_name: "abpravo_backend_nginx"
+    restart: always
+    build: ./docker/nginx/
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # ports:
+    #   - 80:80
+    volumes:
+      - abpravo-django-static:/www/static
+      - abpravo-django-media:/www/media
+      # - ./code/static:/www/static
+    depends_on:
+      - django
+    links:
+      - django:django
+    environment:
+      - VIRTUAL_HOST=api.abpravo.weew.ru,admin.abpravo.weew.ru
+      - LETSENCRYPT_HOST=api.abpravo.weew.ru,admin.abpravo.weew.ru
+      - LETSENCRYPT_EMAIL=t@weew.ru
+
+  # postgres:
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/production/postgres/Dockerfile
+  #   image: mgu_bigdata_production_postgres
+  #   container_name: "abpravo_postgres"
+  #   restart: always
+  #   expose:
+  #     - "5432"
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - local_postgres_data:/var/lib/postgresql/data
+  #     - local_postgres_data_backups:/backups
+  #   env_file:
+  #     - ./.envs/.local/.postgres
+
+  # redis:
+  #   image: 'redis:alpine'
+  #   container_name: 'abpravo_redis'
+  #   # command: ["redis-server", "--appendonly", "yes"]
+  #   restart: always
+  #   expose:
+  #     - '6379'
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - 'abpravo-redisdata:/data'
+
+networks:
+  default:
+    external:
+      name: nginx-net

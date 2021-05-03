@@ -1,0 +1,6 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+DJANGO_PRODUCTION=yes
+TWILIO_ACCOUNT_SID=ACf1c104f964aebdba2fd8c974c4b2641b
+TWILIO_AUTH_TOKEN=ce8e97f1252214887c719bc90f12edb7

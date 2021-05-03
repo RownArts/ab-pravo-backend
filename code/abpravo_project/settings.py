@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # 'phonenumber_field',
     'django_cleanup.apps.CleanupConfig',
+    'corsheaders',
     # APPS
     'apps.core',
 ]
@@ -60,6 +61,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # DEFAULT DJANGO
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -151,3 +156,16 @@ REST_FRAMEWORK = {
 
 
 CACHETIME_CUSTOM = 30  # в секундах
+
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://ab-pravo.ru",
+    "https://www.ab-pravo.ru",
+    "http://localhost:8080",
+    "http://127.0.0.1:8000"
+]
+CSRF_TRUSTED_ORIGINS = [
+    'ab-pravo.ru',
+    'localhost',
+    '127.0.0.1',
+]
