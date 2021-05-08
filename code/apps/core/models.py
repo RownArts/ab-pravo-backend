@@ -45,6 +45,8 @@ class PageBlock(models.Model):
 
     class Meta(object):
         ordering = ['my_order']
+        verbose_name = "Блок страницы"
+        verbose_name_plural = "Блоки страниц"
 
     def __str__(self):
         return self.title
@@ -58,8 +60,9 @@ class Button(models.Model):
     block = models.ForeignKey('PageBlock', blank=True, null=True, default=None, related_name='buttons', on_delete=models.SET_NULL)\
 
 
-    # class Meta(object):
-    #     ordering = ['my_order']
+    class Meta(object):
+        verbose_name = "Кнопка"
+        verbose_name_plural = "Кнопки"
 
     def __str__(self):
         return self.title
@@ -73,6 +76,8 @@ class Price(models.Model):
 
     class Meta(object):
         ordering = ['my_order']
+        verbose_name = "Цена"
+        verbose_name_plural = "Цены"
 
     def __str__(self):
         return self.title
@@ -91,3 +96,7 @@ class SiteConfig(models.Model):
 
     def __str__(self):
         return self.key
+
+    class Meta(object):
+        verbose_name = "Дополнительные настройки"
+        verbose_name_plural = "Дополнительные настройки"
