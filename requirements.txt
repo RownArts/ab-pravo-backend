@@ -2,9 +2,9 @@
 # ---- SERVER -----
 # -----------------
 # uwsgi
-# gunicorn
+gunicorn
 # gevent
-# meinheld
+meinheld
 # psycopg2
 # psycopg2-binary
 # graphene-django>=2.0

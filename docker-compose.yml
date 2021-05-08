@@ -12,13 +12,9 @@ services:
     # image: taime/django:latest
     build:
       context: ./
-      # dockerfile: ./docker/django/alpine-taime.Dockerfile
       dockerfile: ./docker/django/default.Dockerfile
-    # command: gunicorn abpravo_project.wsgi -b 0.0.0.0:8000
-    # command: bash -c " python manage.py collectstatic --noinput && python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
-    # command: bash -c " python manage.py collectstatic --noinput && uwsgi --http :8000 --module abpravo_project.wsgi"
-    # command: bash -c " python manage.py collectstatic --noinput && gunicorn abpravo_project.wsgi -b 0.0.0.0:8000"
-    command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k egg:meinheld#gunicorn_worker -c /gunicorn_conf.py abpravo_project.wsgi -b 0.0.0.0:8000"
+    command: bash -c " python manage.py collectstatic --noinput && python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    # command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k egg:meinheld#gunicorn_worker -c /gunicorn_conf.py abpravo_project.wsgi -b 0.0.0.0:8000"
     logging:
       options:
         max-size: "10m"
@@ -27,8 +23,8 @@ services:
       - ./code:/code
       - abpravo-django-static:/code/static
       - abpravo-django-media:/code/media
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     expose:
       - "8000"
     # links:
