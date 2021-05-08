@@ -26,7 +26,7 @@ SECRET_KEY = '&$3@9t(d&%vh@9!cn#0*wxtlrvb0o*+z@^_ydl1cs13*he-4y3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'api.ab-pravo.ru', ]
 
 
 # Application definition
@@ -160,8 +160,8 @@ CACHETIME_CUSTOM = 30  # в секундах
 CORS_ALLOWED_ORIGINS = [
     "https://ab-pravo.ru",
     "https://www.ab-pravo.ru",
-    "http://localhost:8080",
-    "http://127.0.0.1:8000"
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
 ]
 CSRF_TRUSTED_ORIGINS = [
     'ab-pravo.ru',
