@@ -51,8 +51,8 @@ services:
     links:
       - django:django
     environment:
-      - VIRTUAL_HOST=api.ab-pravo.weew.ru
-      - LETSENCRYPT_HOST=api.ab-pravo.weew.ru
+      - VIRTUAL_HOST=api.ab-pravo.ru
+      - LETSENCRYPT_HOST=api.ab-pravo.ru
       - LETSENCRYPT_EMAIL=t@weew.ru
 
   # postgres:
