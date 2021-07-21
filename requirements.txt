@@ -42,8 +42,8 @@ django-nested-admin
 django-extensions
 django-cleanup
 django-ckeditor
-# django-storages
-# boto3
+django-storages
+boto3
 # django-reset-migrations
 # drf-keyed-list
 django-import-export
