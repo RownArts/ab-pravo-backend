@@ -22,6 +22,8 @@ humanize = "*"
 Django = "*"
 Pillow = "*"
 markdown = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 autopep8 = "*"

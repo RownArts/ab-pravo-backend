@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&$3@9t(d&%vh@9!cn#0*wxtlrvb0o*+z@^_ydl1cs13*he-4y3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'api.ab-pravo.ru', ]
 
@@ -54,8 +54,10 @@ INSTALLED_APPS = [
     'django_extensions',
     # 'phonenumber_field',
     'django_cleanup.apps.CleanupConfig',
+    'storages',
     # APPS
     'apps.core',
+    'apps.gallery',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +171,30 @@ CSRF_TRUSTED_ORIGINS = [
     'localhost',
     '127.0.0.1',
 ]
+
+
+STATICFILES_LOCATION = 'static'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+AWS_S3_ENDPOINT_URL = 'https://storage.yandexcloud.net'
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+#     'CacheControl': 'max-age=94608000',
+# }
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_DEFAULT_ACL = 'public-read'
+
+########    AMAZON S3 SETTINGS   ##########
+AWS_STORAGE_BUCKET_NAME = 'cdn.ab-pravo.ru'
+AWS_S3_REGION_NAME = 'ru-central1'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'PSKICBYGrpugSQ2kqJpw'
+AWS_SECRET_ACCESS_KEY = '5bMh2pKsW75-tSNzSjArB4AKNtyKxRoeRbbn9Abj'
+AWS_S3_SECURE_URLS = True
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_CUSTOM_DOMAIN = '%s.website.yandexcloud.net' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = 'cdn.ab-pravo.ru'
