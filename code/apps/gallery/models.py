@@ -34,11 +34,11 @@ class GalleryPhoto(models.Model):
 
 
 class GalleryVideo(models.Model):
-    youtube_link = models.URLField(max_length=200)
+    video_page_link = models.URLField(max_length=200)
     title = models.CharField(max_length=200, blank=True, null=True, verbose_name='Подпись к видео')
     album = models.ForeignKey('GalleryAlbum', blank=True, null=True, default=None, related_name='videos', on_delete=models.SET_NULL)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     published = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.id)+'. ' + str(self.image)
+        return str(self.id)+'. ' + str(self.video_page_link)
