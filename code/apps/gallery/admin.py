@@ -5,7 +5,7 @@ from sorl.thumbnail import get_thumbnail
 from django.utils.safestring import mark_safe
 import nested_admin
 
-from .models import GalleryPhoto, GalleryAlbum
+from .models import GalleryPhoto, GalleryAlbum, GalleryVideo
 
 
 class GalleryPhotoInline(admin.TabularInline, AdminImageMixin, nested_admin.NestedStackedInline):
@@ -14,9 +14,15 @@ class GalleryPhotoInline(admin.TabularInline, AdminImageMixin, nested_admin.Nest
     extra = 1
 
 
+class GalleryVideoInline(admin.TabularInline, AdminImageMixin, nested_admin.NestedStackedInline):
+    model = GalleryVideo
+    # exclude = ('show_on_main', )
+    extra = 1
+
+
 @admin.register(GalleryAlbum)
 class GalleryAlbumAdmin(AdminImageMixin, nested_admin.NestedModelAdmin, admin.ModelAdmin):
-    inlines = [GalleryPhotoInline]
+    inlines = [GalleryVideoInline, GalleryPhotoInline]
     list_display = ('title', 'published',)
     list_display_links = ['title', ]
     list_filter = ('published', 'created_date')

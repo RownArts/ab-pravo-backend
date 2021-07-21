@@ -29,10 +29,16 @@ class GalleryPhoto(models.Model):
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     published = models.BooleanField(default=True)
 
-    # def image_tag(self):
-    #     thumb = get_thumbnail(self.image, '320x320')
-    #     return mark_safe('<img src="%s" height="160" />' % thumb.url) if self.image != '' else ''
-    # image_tag.allow_tags = True
+    def __str__(self):
+        return str(self.id)+'. ' + str(self.image)
+
+
+class GalleryVideo(models.Model):
+    youtube_link = models.URLField(max_length=200)
+    title = models.CharField(max_length=200, blank=True, null=True, verbose_name='Подпись к видео')
+    album = models.ForeignKey('GalleryAlbum', blank=True, null=True, default=None, related_name='videos', on_delete=models.SET_NULL)
+    created_date = models.DateTimeField(default=timezone.now, editable=False)
+    published = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.id)+'. ' + str(self.image)
