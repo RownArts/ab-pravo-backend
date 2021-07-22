@@ -55,7 +55,7 @@ class PageBlock(models.Model):
 class Button(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     href = models.CharField(max_length=100, editable=True, null=True, blank=True, default=None,)
-    # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+    my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
     # published = models.BooleanField(default=True)
     block = models.ForeignKey('PageBlock', blank=True, null=True, default=None, related_name='buttons', on_delete=models.SET_NULL)\
 
