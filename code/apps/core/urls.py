@@ -9,6 +9,9 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'pages', views.PageViewSet, 'pages')
 router.register(r'prices', views.PriceViewSet, 'prices')
+router.register(r'publications', views.PublicationViewSet, 'publications')
+router.register(r'comments', views.CommentViewSet, 'comments')
+router.register(r'prices', views.PriceViewSet, 'prices')
 router.register(r'site-configs', views.SiteConfigViewSet, 'site-configs')
 
 # Wire up our API using automatic URL routing.

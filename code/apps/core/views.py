@@ -19,7 +19,7 @@ from apps.core.serializers import *
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_cookie
+# from django.views.decorators.vary import vary_on_cookie
 
 
 class PageViewSet(viewsets.ModelViewSet):
@@ -31,7 +31,7 @@ class PageViewSet(viewsets.ModelViewSet):
         return Page.objects.filter(published=True)
 
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
-    @method_decorator(vary_on_cookie)
+    # @method_decorator(vary_on_cookie)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -44,7 +44,6 @@ class PriceViewSet(viewsets.ModelViewSet):
         return Price.objects.filter(published=True)
 
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
-    @method_decorator(vary_on_cookie)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -55,6 +54,29 @@ class SiteConfigViewSet(viewsets.ModelViewSet):
     lookup_field = 'key'
 
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
-    @method_decorator(vary_on_cookie)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class PublicationViewSet(viewsets.ModelViewSet):
+    serializer_class = PublicationSerializer
+    queryset = Publication.objects.filter(published=True)
+
+    def get_queryset(self):
+        return Publication.objects.filter(published=True)
+
+    @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.filter(published=True)
+
+    def get_queryset(self):
+        return Comment.objects.filter(published=True)
+
+    @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
