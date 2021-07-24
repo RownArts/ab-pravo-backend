@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from django.conf import settings
+# from django.conf import settings
 from .models import *
+from sorl_thumbnail_serializer.fields import HyperlinkedSorlImageField
 
 # from sorl_thumbnail_serializer.fields import HyperlinkedSorlImageField
 # from abpravo_project.utils import build_absolute_img_url, build_frontend_url
@@ -15,11 +16,19 @@ class GalleryVideoSerializer(serializers.ModelSerializer):
 
 
 class GalleryPhotoSerializer(serializers.ModelSerializer):
+    original = serializers.ImageField(source='image')
 
     class Meta:
         model = GalleryPhoto
-        fields = ('id', 'image', 'title')
+        fields = ('id', 'original', 'thumbnail', 'title')
         # fields = '__all__'
+
+    thumbnail = HyperlinkedSorlImageField(
+        '250x100',
+        options={"crop": "center", "quality": 85},
+        source='image',
+        read_only=True
+    )
 
 
 class GalleryAlbumSerializer(serializers.ModelSerializer):

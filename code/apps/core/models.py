@@ -98,5 +98,5 @@ class SiteConfig(models.Model):
         return self.key
 
     class Meta(object):
-        verbose_name = "Дополнительные настройки"
-        verbose_name_plural = "Дополнительные настройки"
+        verbose_name = "Настройки"
+        verbose_name_plural = "Настройки"
