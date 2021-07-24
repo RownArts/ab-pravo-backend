@@ -12,12 +12,13 @@ class GalleryAlbum(models.Model):
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=False, null=True)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     published = models.BooleanField(default=True)
+    my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['my_order']
         verbose_name = "Фото альбом"
         verbose_name_plural = "Фото альбомы"
 
