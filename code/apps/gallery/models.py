@@ -25,7 +25,8 @@ class GalleryAlbum(models.Model):
 
 class GalleryPhoto(models.Model):
     image = ImageField(upload_to='images/gallery/%Y/%m/', default='no-image.png')
-    title = models.CharField(max_length=200, blank=True, null=True, verbose_name='Подпись к фото')
+    title = models.CharField(max_length=200, blank=True, null=True, verbose_name='Заголовок')
+    description = models.TextField(blank=True, null=True, verbose_name='Описание')
     album = models.ForeignKey('GalleryAlbum', blank=True, null=True, default=None, related_name='photos', on_delete=models.SET_NULL)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     published = models.BooleanField(default=True)

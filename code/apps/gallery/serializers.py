@@ -17,6 +17,8 @@ class GalleryVideoSerializer(serializers.ModelSerializer):
 
 class GalleryPhotoSerializer(serializers.ModelSerializer):
     original = serializers.ImageField(source='image')
+    originalTitle = serializers.CharField(source='title')
+    thumbnailTitle = serializers.CharField(source='title')
 
     class Meta:
         model = GalleryPhoto
