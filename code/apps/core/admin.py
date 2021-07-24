@@ -8,6 +8,18 @@ from sorl.thumbnail.admin import AdminImageMixin
 import nested_admin
 
 
+@admin.register(Publication)
+class PublicationAdmin(admin.ModelAdmin):
+
+    pass
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    pass
+
+
 # class PageBlockInline(nested_admin.NestedTabularInline):
 class PageBlockInline(nested_admin.NestedStackedInline):
     model = PageBlock

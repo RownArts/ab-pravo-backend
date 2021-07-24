@@ -3,6 +3,7 @@ from sorl.thumbnail import ImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_extensions.db.fields import AutoSlugField
 from slugify import slugify
+from django.utils import timezone
 
 
 class SeoModel (models.Model):
@@ -27,6 +28,24 @@ class Page(models.Model):
         ordering = ['my_order']
         verbose_name = "Страница"
         verbose_name_plural = "Страницы"
+
+    def __str__(self):
+        return self.title
+
+
+class Publication(models.Model):
+    title = models.CharField(max_length=200)
+    link = models.CharField(max_length=200)
+    # image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке", blank=True, null=True)
+    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
+    published = models.BooleanField(default=True)
+    # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+    created_date = models.DateTimeField(default=timezone.now, editable=False)
+
+    class Meta:
+        ordering = ['created_date']
+        verbose_name = "СМИ"
+        verbose_name_plural = "СМИ"
 
     def __str__(self):
         return self.title
@@ -100,3 +119,22 @@ class SiteConfig(models.Model):
     class Meta(object):
         verbose_name = "Настройки"
         verbose_name_plural = "Настройки"
+
+
+class Comment(models.Model):
+    title = models.CharField(max_length=200)
+    profession = models.CharField(max_length=200, blank=False, null=False)
+    text = models.TextField(max_length=200)
+    image = ImageField(upload_to='images/pages', default='no-image.png', blank=True, null=True)
+    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
+    published = models.BooleanField(default=True)
+    created_date = models.DateTimeField(default=timezone.now, editable=False)
+    # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
+
+    class Meta:
+        ordering = ['created_date']
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
+
+    def __str__(self):
+        return self.title
