@@ -124,7 +124,7 @@ class SiteConfig(models.Model):
 
 class Comment(models.Model):
     name = models.CharField(max_length=200, verbose_name="Имя")
-    profession = models.CharField(max_length=200, blank=False, null=False)
+    role = models.CharField(max_length=200, blank=False, null=False)
     text = models.TextField(max_length=200)
     image = ImageField(upload_to='images/comments', default='no-image.png', blank=True, null=True)
     slug = AutoSlugField(populate_from='name', slugify_function=slugify, editable=False, null=True)
