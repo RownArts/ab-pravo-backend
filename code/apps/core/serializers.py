@@ -70,6 +70,13 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
 
+    avatar = HyperlinkedSorlImageField(
+        '256x256',
+        options={"crop": "center", "quality": 85},
+        source='image',
+        read_only=True
+    )
+
 
 class SiteConfigSerializer(serializers.ModelSerializer):
 
