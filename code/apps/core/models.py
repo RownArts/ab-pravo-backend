@@ -37,7 +37,7 @@ class Publication(models.Model):
     title = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
     # image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке", blank=True, null=True)
-    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
+    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=False, null=True)
     published = models.BooleanField(default=True)
     # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
@@ -122,7 +122,7 @@ class SiteConfig(models.Model):
 
 
 class Comment(models.Model):
-    title = models.CharField(max_length=200)
+    fio = models.CharField(max_length=200, verbose_name="Имя")
     profession = models.CharField(max_length=200, blank=False, null=False)
     text = models.TextField(max_length=200)
     image = ImageField(upload_to='images/comments', default='no-image.png', blank=True, null=True)
