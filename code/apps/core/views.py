@@ -92,7 +92,8 @@ class CommentViewSet(viewsets.ModelViewSet):
 @permission_classes((permissions.AllowAny,))
 def api_create_contact_view(request):
     sender = 'server@ab-pravo.ru'
-    send_to_email = 'info@ab-pravo.ru'
+    # send_to_email = 'info@ab-pravo.ru'
+    send_to_email = 'server@ab-pravo.ru'
     if request.method == "POST":
         serializer = ContactSerailizer(data=request.data)
         if serializer.is_valid():
