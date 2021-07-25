@@ -1,4 +1,10 @@
 # from django.shortcuts import render
+from rest_framework import permissions
+from rest_framework.decorators import api_view, permission_classes
+from django.core.mail import send_mail
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 from django.conf import settings
 from rest_framework import viewsets, generics
 # from rest_framework.views import APIView
@@ -80,3 +86,26 @@ class CommentViewSet(viewsets.ModelViewSet):
     @method_decorator(cache_page(settings.CACHETIME_CUSTOM))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+
+@api_view(['POST', ])
+@permission_classes((permissions.AllowAny,))
+def api_create_contact_view(request):
+    if request.method == "POST":
+        serializer = ContactSerailizer(data=request.data)
+        if serializer.is_valid():
+            name = request.POST['name']
+            contact = request.POST['email']
+            sender = 'server@ab-pravo.ru'
+            message = name + '. ' + contact
+
+            # send mail
+            send_mail(
+                'Contact Form mail from ' + name,
+                message,
+                sender,
+                ['temadude@yandex.ru'],
+            )
+            # serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

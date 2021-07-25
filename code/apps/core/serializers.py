@@ -83,3 +83,10 @@ class SiteConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteConfig
         fields = '__all__'
+
+
+class ContactSerailizer(serializers.Serializer):
+    name = serializers.CharField()
+    email = serializers.CharField()
+    # email = serializers.EmailField()
+    # message = serializers.CharField()

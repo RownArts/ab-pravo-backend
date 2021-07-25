@@ -139,3 +139,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContactModel(models.Model):
+    name = models.CharField(max_length=200)
+    sender = models.CharField(max_length=200, blank=False, null=False)
+    # message = models.CharField(max_length=200, blank=False, null=False)
+    created_date = models.DateTimeField(default=timezone.now, editable=False)
+
+    class Meta:
+        ordering = ['created_date']
+
+    def __str__(self):
+        return self.name
