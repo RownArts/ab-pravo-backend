@@ -122,11 +122,11 @@ class SiteConfig(models.Model):
 
 
 class Comment(models.Model):
-    fio = models.CharField(max_length=200, verbose_name="Имя")
+    name = models.CharField(max_length=200, verbose_name="Имя")
     profession = models.CharField(max_length=200, blank=False, null=False)
     text = models.TextField(max_length=200)
     image = ImageField(upload_to='images/comments', default='no-image.png', blank=True, null=True)
-    slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
+    slug = AutoSlugField(populate_from='name', slugify_function=slugify, editable=True, null=True)
     published = models.BooleanField(default=True)
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     # my_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False, editable=False)
@@ -137,4 +137,4 @@ class Comment(models.Model):
         verbose_name_plural = "Отзывы"
 
     def __str__(self):
-        return self.fio
+        return self.name
