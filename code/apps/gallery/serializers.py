@@ -22,7 +22,7 @@ class GalleryPhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GalleryPhoto
-        fields = ('id', 'original', 'thumbnail', 'title')
+        fields = ('id', 'original', 'thumbnail', 'title', 'originalTitle', 'thumbnailTitle')
         # fields = '__all__'
 
     thumbnail = HyperlinkedSorlImageField(
