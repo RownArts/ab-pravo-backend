@@ -17,5 +17,5 @@ router.register(r'site-configs', views.SiteConfigViewSet, 'site-configs')
 # Wire up our API using automatic URL routing.
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^api/post-contacts', views.api_create_contact_view),
+    url(r'^post-contacts', views.api_create_contact_view),
 ]
