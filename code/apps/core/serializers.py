@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.conf import settings
 from apps.core.models import *
+from sorl_thumbnail_serializer.fields import HyperlinkedSorlImageField
 
 # from sorl_thumbnail_serializer.fields import HyperlinkedSorlImageField
 # from abpravo_project.utils import build_absolute_img_url, build_frontend_url
@@ -15,6 +16,7 @@ class ButtonSerializer(serializers.ModelSerializer):
 
 class PageBlocksSerializer(serializers.ModelSerializer):
     buttons = ButtonSerializer(read_only=True, many=True)
+    original = serializers.ImageField(source='image')
 
     # def get_content_html(self, obj):
     #     return (build_absolute_img_url(self, obj.content_html))
@@ -22,6 +24,13 @@ class PageBlocksSerializer(serializers.ModelSerializer):
     class Meta:
         model = PageBlock
         fields = '__all__'
+
+    thumbnail = HyperlinkedSorlImageField(
+        '512x512',
+        options={"quality": 85},
+        source='image',
+        read_only=True
+    )
 
 
 class PageShortSerializer(serializers.ModelSerializer):
