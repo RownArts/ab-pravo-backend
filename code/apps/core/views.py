@@ -96,8 +96,8 @@ def api_create_contact_view(request):
     if request.method == "POST":
         serializer = ContactSerailizer(data=request.data)
         if serializer.is_valid():
-            name = request.POST['name']
-            contact = request.POST['email']
+            name = request.data.get("name")
+            contact = request.data.get("email")
 
             # send mail
             send_mail(
