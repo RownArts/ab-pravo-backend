@@ -137,4 +137,4 @@ class Comment(models.Model):
         verbose_name_plural = "Отзывы"
 
     def __str__(self):
-        return self.title
+        return self.fio
