@@ -91,20 +91,20 @@ class CommentViewSet(viewsets.ModelViewSet):
 @api_view(['POST', ])
 @permission_classes((permissions.AllowAny,))
 def api_create_contact_view(request):
+    sender = 'server@ab-pravo.ru'
+    send_to_email = 'info@ab-pravo.ru'
     if request.method == "POST":
         serializer = ContactSerailizer(data=request.data)
         if serializer.is_valid():
             name = request.POST['name']
             contact = request.POST['email']
-            sender = 'server@ab-pravo.ru'
-            message = name + '. ' + contact
 
             # send mail
             send_mail(
-                'Contact Form mail from ' + name,
-                message,
+                'Contact Form mail from site' + sender,
+                name + '. ' + contact,
                 sender,
-                ['temadude@yandex.ru'],
+                [send_to_email],
             )
             # serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
