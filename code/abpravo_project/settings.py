@@ -198,3 +198,10 @@ AWS_S3_SECURE_URLS = True
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # AWS_S3_CUSTOM_DOMAIN = '%s.website.yandexcloud.net' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_CUSTOM_DOMAIN = 'cdn.ab-pravo.ru'
+
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'server@ab-pravo.ru'
+EMAIL_HOST_PASSWORD = 'VWgoHaQGhE;Vn3NbN=pjghwj'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
