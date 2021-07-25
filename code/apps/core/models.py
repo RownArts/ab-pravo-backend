@@ -35,6 +35,7 @@ class Page(models.Model):
 
 class Publication(models.Model):
     title = models.CharField(max_length=200)
+    smi_name = models.CharField(max_length=200, blank=True, null=True, default=None)
     link = models.CharField(max_length=200)
     # image = ImageField(upload_to='images/pages', default='no-image.png', verbose_name="Картинка в шапке", blank=True, null=True)
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=False, null=True)
