@@ -54,7 +54,7 @@ class Publication(models.Model):
 class PageBlock(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     # description = models.TextField(max_length=1200, verbose_name="Описание", blank=True, null=True)
-    image = ImageField(upload_to='images/pageblock', default='no-image.png')
+    image = ImageField(upload_to='images/pageblock', blank=True, null=True, default=None)
     content_html = RichTextUploadingField(blank=True, null=True, default=None, verbose_name="Контент HTML")
     # published = models.BooleanField(default=True)
     slug = AutoSlugField(populate_from='title', slugify_function=slugify, editable=True, null=True)
