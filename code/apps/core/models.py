@@ -105,7 +105,7 @@ class Price(models.Model):
 
 class SiteConfig(models.Model):
     key = models.SlugField(max_length=200)
-    slogan = models.TextField(max_length=1200, blank=True, null=True)
+    slogan = models.TextField(max_length=1200, blank=True, null=True, default=None)
     phone1 = models.CharField(max_length=200, blank=True, null=True, default=None)
     phone2 = models.CharField(max_length=200, blank=True, null=True, default=None)
     whatsapp = models.CharField(max_length=200, blank=True, null=True, default=None)
